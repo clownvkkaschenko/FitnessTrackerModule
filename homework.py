@@ -1,7 +1,7 @@
 class InfoMessage:
     """Информационное сообщение о тренировке."""
     pass
-
+    #start
 
 class Training:
     """Базовый класс тренировки."""

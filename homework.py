@@ -1,5 +1,5 @@
 from dataclasses import dataclass, asdict
-from typing import ClassVar, Dict, Type
+from typing import ClassVar, Dict, Type, List
 
 
 @dataclass
@@ -10,7 +10,7 @@ class InfoMessage:
     duration: float  # длительность тренировки(в часах)
     distance: float  # дистанция(в километрах)
     speed: float  # средняя скорость(в км/ч)
-    calories: float  # потраченный пользователем килокалории
+    calories: float  # потраченные пользователем килокалории
 
     message: str = ('Тип тренировки: {training_type}; '
                     'Длительность: {duration:.3f} ч.; '
@@ -30,7 +30,7 @@ class Training:
     duration: float  # длительность тренировки
     weight: float  # вес пользователя
 
-    M_IN_KM: ClassVar[float] = 1000  # перевод значений из метров в километры
+    M_IN_KM: ClassVar[int] = 1000  # перевод значений из метров в километры
     time_min: ClassVar[int] = 60  # константа для подсчёта времени в минутах
     LEN_STEP: ClassVar[float] = 0.65  # расстояние пользователя за один шаг
 
@@ -81,7 +81,7 @@ class SportsWalking(Training):
     coeff_calorie_SW1: ClassVar[float] = 0.035
     coeff_calorie_SW2: ClassVar[float] = 0.029
 
-    height: float
+    height: float  # рост пользователя
 
     def get_spent_calories(self) -> float:
         return(
@@ -100,8 +100,8 @@ class Swimming(Training):
     coeff_calorie_S2: ClassVar[int] = 2
     LEN_STEP: ClassVar[float] = 1.38  # расстояние пользователя за один гребок
 
-    length_pool: float
-    count_pool: int
+    count_pool: int  # сколько раз пользователь переплыл бассейн
+    length_pool: float  # длина бассейна в метрах
 
     def get_mean_speed(self) -> float:
         return(self.length_pool
@@ -115,7 +115,7 @@ class Swimming(Training):
                * self.weight)
 
 
-def read_package(workout_type: str, data: list) -> Training:
+def read_package(workout_type: str, data: List[int]) -> Training:
     """Прочитать данные полученные от датчиков."""
 
     some_dict: Dict[str, Type[Training]] = {

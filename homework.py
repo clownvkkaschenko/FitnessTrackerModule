@@ -31,7 +31,7 @@ class Training:
     weight: float  # вес пользователя
 
     M_IN_KM: ClassVar[int] = 1000  # перевод значений из метров в километры
-    time_min: ClassVar[int] = 60  # константа для подсчёта времени в минутах
+    TIME_MIN: ClassVar[int] = 60  # константа для подсчёта времени в минутах
     LEN_STEP: ClassVar[float] = 0.65  # расстояние пользователя за один шаг
 
     def get_distance(self) -> float:
@@ -70,7 +70,7 @@ class Running(Training):
             (self.coeff_calorie_R1 * self.get_mean_speed()
              - self.coeff_calorie_R2)
             * self.weight / self.M_IN_KM
-            * self.duration * self.time_min)
+            * self.duration * self.TIME_MIN)
 
 
 @dataclass
@@ -88,7 +88,7 @@ class SportsWalking(Training):
             (self.coeff_calorie_SW1 * self.weight
              + (self.get_mean_speed()**2 // self.height)
              * self.coeff_calorie_SW2 * self.weight)
-            * self.duration * self.time_min)
+            * self.duration * self.TIME_MIN)
 
 
 @dataclass

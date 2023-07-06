@@ -1,7 +1,7 @@
 <div id="header" align="center">
   <h1>Модуль фитнес-трекера</h1>
 </div>
-<img src="https://img.shields.io/badge/Python-3.7.9-brightgreen"/>
+<img src="https://img.shields.io/badge/Python-3.7.9-F8F8FF?style=for-the-badge&logo=python&logoColor=20B2AA">
 
 Программный модуль фитнес-трекера обрабатывает данные для трёх видов тренировок: для бега, спортивной ходьбы и плавания.
 ### Описание работы фитнес-трекера:
